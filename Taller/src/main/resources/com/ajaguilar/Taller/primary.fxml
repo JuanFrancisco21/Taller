@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="415.0" prefWidth="665.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ajaguilar.Taller.PrimaryController">
+   <children>
+      <SplitPane dividerPositions="0.3779527559055118" prefHeight="410.0" prefWidth="511.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0">
+         <items>
+            <AnchorPane prefHeight="200.0" prefWidth="329.0">
+               <children>
+                  <TextField fx:id="DniCliente" layoutX="24.0" layoutY="26.0" prefHeight="25.0" prefWidth="126.0" />
+                  <ButtonBar layoutY="51.0" prefHeight="40.0" prefWidth="401.0">
+                    <buttons>
+                        <Button fx:id="Search" maxWidth="75.0" mnemonicParsing="false" onAction="#search" prefHeight="25.0" prefWidth="75.0" text="Buscar" />
+                      <Button maxWidth="50.0" mnemonicParsing="false" onAction="#addPersona" prefHeight="20.0" text="Nuevo" />
+                        <Button fx:id="deletePerson" maxWidth="60.0" mnemonicParsing="false" onAction="#deletePersona" text="Delete" />
+                        <Button fx:id="SearchAll" mnemonicParsing="false" onAction="#searchAll" prefHeight="25.0" prefWidth="130.0" text="Buscar todos">
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                        </Button>
+                    </buttons>
+                  </ButtonBar>
+                  <Label layoutX="24.0" layoutY="6.0" text="Dni Cliente">
+                     <font>
+                        <Font name="System Bold Italic" size="12.0" />
+                     </font>
+                  </Label>
+                  <TableView fx:id="tablaClientes" layoutX="24.0" layoutY="103.0" prefHeight="285.0" prefWidth="360.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="103.0">
+                    <columns>
+                      <TableColumn fx:id="dniColumna" prefWidth="115.0" text="DNI" />
+                      <TableColumn fx:id="nombreColumna" prefWidth="121.0" text="Nombre" />
+                        <TableColumn fx:id="direccionColumna" prefWidth="134.0" text="Direccion" />
+                    </columns>
+                  </TableView>
+               </children>
+               <padding>
+                  <Insets right="10.0" />
+               </padding>
+            </AnchorPane>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0">
+               <children>
+                  <HBox spacing="5.0" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0">
+                     <children>
+                        <Button layoutX="197.1875" layoutY="241.0" mnemonicParsing="false" onAction="#switchToSecondary" prefHeight="25.0" prefWidth="87.0" text="Reparaciones" />
+                     </children>
+                  </HBox>
+                  <TableView fx:id="tablaReparaciones" layoutX="11.0" layoutY="14.0" prefHeight="238.0" prefWidth="225.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="70.0">
+                    <columns>
+                      <TableColumn fx:id="idColumna" prefWidth="43.0" text="ID" />
+                      <TableColumn fx:id="precioColumna" text="Precio" />
+                        <TableColumn fx:id="matriculaColumna" prefWidth="94.0" text="Matricula" />
+                    </columns>
+                  </TableView>
+                  <TextField fx:id="IDRepa" layoutX="10.0" layoutY="17.0" prefHeight="25.0" prefWidth="126.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="25.0" />
+                  <Label prefHeight="17.0" prefWidth="90.0" text="Id Reparacion" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="5.0">
+                     <font>
+                        <Font name="System Bold Italic" size="12.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="Searchid" layoutX="145.0" layoutY="25.0" maxWidth="63.0" mnemonicParsing="false" onAction="#searchRepa" prefHeight="25.0" prefWidth="63.0" text="Buscar" />
+               </children>
+            </AnchorPane>
+         </items>
+      </SplitPane>
+      <MenuBar AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="Conectar">
+            <items>
+              <MenuItem mnemonicParsing="false" text="MySQL" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Editar">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Guardar" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Help">
+            <items>
+              <MenuItem mnemonicParsing="false" text="About" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+   </children>
+</AnchorPane>
