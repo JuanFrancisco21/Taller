@@ -1,4 +1,4 @@
-package com.ajaguilar.Taller;
+package com.ajaguilar.Taller.Controller;
 
 
 import java.io.IOException;
