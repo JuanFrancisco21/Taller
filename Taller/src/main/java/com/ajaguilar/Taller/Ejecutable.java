@@ -1,4 +1,4 @@
-package com.ajaguilar.Taller.Controller;
+package com.ajaguilar.Taller;
 
 import java.sql.Date;
 import java.time.LocalDate;

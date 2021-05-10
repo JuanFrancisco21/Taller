@@ -1,4 +1,4 @@
-package com.ajaguilar.Taller.Controller;
+package com.ajaguilar.Taller;
 
 import java.io.IOException;
 import java.time.LocalDate;

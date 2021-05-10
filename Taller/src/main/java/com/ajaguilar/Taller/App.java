@@ -1,4 +1,4 @@
-package com.ajaguilar.Taller.Controller;
+package com.ajaguilar.Taller;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
