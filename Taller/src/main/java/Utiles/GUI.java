@@ -24,7 +24,7 @@ public class GUI {
 		return result;
 	}
 	/**
-	 * Obtener edad entre 15-110 a�os
+	 * Obtener edad entre 15-110 anios
 	 * @return devuelve un entero.
 	 */
 	public static int  getAge() {

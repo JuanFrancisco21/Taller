@@ -1,4 +1,4 @@
-package com.ajaguilar.modelo.DAO;
+package com.ajaguilar.Taller.Modelo.DAO;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -8,8 +8,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.ajaguilar.modelo.Client;
-import com.ajaguilar.modelo.Reparacion;
+import com.ajaguilar.Taller.Modelo.Client;
+import com.ajaguilar.Taller.Modelo.Reparacion;
 
 import Utiles.Conexion;
 
@@ -70,6 +70,10 @@ public class ClientDAO extends Client {
 		}
 	}
 	
+	/**
+	 * Buscar todos los clientes de la base de datos
+	 * @return devuelve una lista de clientes
+	 */
 	public static List<Client> TodosClient() {
 		List<Client> result=new ArrayList<Client>();
 		Connection con = Conexion.getConexion();
@@ -92,6 +96,8 @@ public class ClientDAO extends Client {
 		
 		return result;
 	}
+	
+
 	public int guardar() {
 		int rs=0;
 		Connection con = Conexion.getConexion();

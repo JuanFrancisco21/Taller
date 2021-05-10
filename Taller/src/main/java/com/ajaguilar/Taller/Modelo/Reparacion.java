@@ -1,4 +1,4 @@
-package com.ajaguilar.modelo;
+package com.ajaguilar.Taller.Modelo;
 
 public class Reparacion {
 	protected    int id;

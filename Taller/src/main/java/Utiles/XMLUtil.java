@@ -7,7 +7,7 @@ import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 
-import com.ajaguilar.modelo.Connection;
+import com.ajaguilar.Taller.Modelo.Connection;
 
 import javafx.scene.control.Dialog;
 
@@ -39,7 +39,7 @@ public class XMLUtil {
             Marshaller m=context.createMarshaller();
             m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
             Connection conec = new Connection();
-            m.marshal(conec, new File(file));
+            m.marshal(data, new File(file));
         } catch (JAXBException ex) {
             ex.printStackTrace();
             //Dialog.showError("ERROR", "Error reading "+file, ex.toString());

@@ -1,4 +1,4 @@
-package com.ajaguilar.modelo;
+package com.ajaguilar.Taller.Modelo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +15,9 @@ public class Client {
 	protected String direccion;
 	protected List<Reparacion> Reparaciones;
 	
-	
+	/**
+	 * Crear cliente
+	 */
 	public Client() {
 		this("-1", "", "",new ArrayList<Reparacion>());
 	}
@@ -28,7 +30,11 @@ public class Client {
 		this.nombre = nombre;
 		this.direccion = direccion;
 	}
-
+	/**
+	 * Crear cliente 
+	 * @param nombre nombre del cliente
+	 * @param direccion direcion del cliente
+	 */
 	public Client(String nombre, String direccion) {
 		super();
 		this.nombre = nombre;

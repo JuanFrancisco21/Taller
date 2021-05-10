@@ -1,4 +1,4 @@
-package com.ajaguilar.Taller;
+package com.ajaguilar.Taller.Controller;
 
 
 import java.io.IOException;
@@ -7,10 +7,10 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import com.ajaguilar.modelo.Client;
-import com.ajaguilar.modelo.Reparacion;
-import com.ajaguilar.modelo.DAO.ClientDAO;
-import com.ajaguilar.modelo.DAO.ReparacionDAO;
+import com.ajaguilar.Taller.Modelo.Client;
+import com.ajaguilar.Taller.Modelo.Reparacion;
+import com.ajaguilar.Taller.Modelo.DAO.ClientDAO;
+import com.ajaguilar.Taller.Modelo.DAO.ReparacionDAO;
 
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;

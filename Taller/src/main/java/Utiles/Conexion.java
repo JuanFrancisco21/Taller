@@ -13,10 +13,11 @@ import java.util.List;
 public class Conexion {
 	private static Connection con;
 	//Esto debe ir en un XML
-	private final static String server="jdbc:Mysql://localhost";
-	private final static String database="taller";
-	private final static String username="root";
-	private final static String password="";
+	Connection conec=(Connection) XMLUtil.loadDataXML();
+	private final static String server="jdbc:Mysql://localhost"; //"jdbc:Mysql://localhost"
+	private final static String database="taller";	//"taller"
+	private final static String username="root";	//"root"
+	private final static String password="";	//""
 	
 	public static void conecta() {
 		 try {

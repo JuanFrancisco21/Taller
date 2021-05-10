@@ -1,13 +1,13 @@
-package com.ajaguilar.Taller;
+package com.ajaguilar.Taller.Controller;
 
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.Date;
 
-import com.ajaguilar.modelo.Client;
-import com.ajaguilar.modelo.Reparacion;
-import com.ajaguilar.modelo.DAO.ClientDAO;
-import com.ajaguilar.modelo.DAO.ReparacionDAO;
+import com.ajaguilar.Taller.Modelo.Client;
+import com.ajaguilar.Taller.Modelo.Reparacion;
+import com.ajaguilar.Taller.Modelo.DAO.ClientDAO;
+import com.ajaguilar.Taller.Modelo.DAO.ReparacionDAO;
 
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;

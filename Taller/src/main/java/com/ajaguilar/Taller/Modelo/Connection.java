@@ -1,10 +1,14 @@
-package com.ajaguilar.modelo;
+package com.ajaguilar.Taller.Modelo;
 
 import java.util.Objects;
 
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
 
+
+@XmlRootElement(name="conns")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Connection{
     
     private String server;
@@ -15,6 +19,7 @@ public class Connection{
     public Connection(String name){
 
         this.server="";
+        this.database="";
         this.userName="";
         this.password="";
     }
@@ -27,7 +32,7 @@ public class Connection{
         return database;
     }
 
-    public void setType(String database) {
+    public void setDatabase(String database) {
         this.database = database;
     }
 

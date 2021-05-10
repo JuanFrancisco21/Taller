@@ -1,4 +1,4 @@
-package com.ajaguilar.modelo.DAO;
+package com.ajaguilar.Taller.Modelo.DAO;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -11,8 +11,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import com.ajaguilar.modelo.Client;
-import com.ajaguilar.modelo.Reparacion;
+import com.ajaguilar.Taller.Modelo.Client;
+import com.ajaguilar.Taller.Modelo.Reparacion;
 
 import Utiles.Conexion;
 
