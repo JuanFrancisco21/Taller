@@ -8,10 +8,10 @@ public class Ejecutable {
 	public static void main(String[] args) {
 		/*ClientDAO a=new ClientDAO("31009229p");
 		System.out.println(a);*/
-		/*Connection a =new Connection();
+		/*Connection a = XMLUtil.loadDataXML();
 		System.out.println(a);
-		XMLUtil.writeDataXML(a);*/
-		System.out.println("hola");
+		
+		System.out.println("hola");*/
 	}
 
 }

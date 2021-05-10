@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <conns>
-    <server></server>
-    <database></database>
-    <userName></userName>
+    <server>jdbc:Mysql://localhost</server>
+    <database>taller</database>
+    <userName>root</userName>
     <password></password>
 </conns>

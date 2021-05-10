@@ -12,8 +12,6 @@ import java.util.List;
 
 public class Conexion {
 	private static Connection con;
-	//Esto debe ir en un XML
-	Connection conec=(Connection) XMLUtil.loadDataXML();
 	private final static String server="jdbc:Mysql://localhost"; //"jdbc:Mysql://localhost"
 	private final static String database="taller";	//"taller"
 	private final static String username="root";	//"root"

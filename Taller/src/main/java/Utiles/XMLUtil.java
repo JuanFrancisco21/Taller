@@ -22,7 +22,7 @@ public class XMLUtil {
                 JAXBContext context=JAXBContext.newInstance(Connection.class);
                 Unmarshaller um = context.createUnmarshaller();
                 Connection conec = (Connection) um.unmarshal(f);
-                //result.addAll(conec.getConns());
+                result=conec;
             }catch(JAXBException ex){
                 ex.printStackTrace();
                 //Dialog.showError("ERROR", "Error writing "+file, ex.toString());
