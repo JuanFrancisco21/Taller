@@ -14,37 +14,36 @@ import javafx.scene.control.Dialog;
 public class XMLUtil {
     public static String file="conn.xml";
     
-    /*public static Connection loadDataXML() {
+    public static Connection loadDataXML() {
         Connection result=new Connection();       
         File f=new File(file);
         if(f.canRead()){
             try{
                 JAXBContext context=JAXBContext.newInstance(Connection.class);
                 Unmarshaller um = context.createUnmarshaller();
-                Connection wrapper = (Connection) um.unmarshal(f);
-                result.addAll(wrapper.getConns());
+                Connection conec = (Connection) um.unmarshal(f);
+                //result.addAll(conec.getConns());
             }catch(JAXBException ex){
                 ex.printStackTrace();
-                Dialog.showError("ERROR", "Error writing "+file, ex.toString());
+                //Dialog.showError("ERROR", "Error writing "+file, ex.toString());
                 result=new Connection();
             }
         }
         return result;
     }
     
-    public static void writeDataXML(List<Connection> data){
+    public static void writeDataXML(Connection data){
         JAXBContext context;
         try {
-            context = JAXBContext.newInstance(ConnectionsWrapper.class);
+            context = JAXBContext.newInstance(Connection.class);
             Marshaller m=context.createMarshaller();
             m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-            ConnectionsWrapper wrapper = new ConnectionsWrapper();
-            wrapper.setConns(data);
-            m.marshal(wrapper, new File(file));
+            Connection conec = new Connection();
+            m.marshal(conec, new File(file));
         } catch (JAXBException ex) {
             ex.printStackTrace();
-            Dialog.showError("ERROR", "Error reading "+file, ex.toString());
+            //Dialog.showError("ERROR", "Error reading "+file, ex.toString());
         }
                
-    }*/
+    }
 }
