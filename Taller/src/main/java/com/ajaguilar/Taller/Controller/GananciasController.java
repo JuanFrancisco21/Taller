@@ -1,6 +1,9 @@
 package com.ajaguilar.Taller.Controller;
 
 import java.util.Arrays;
+import java.util.List;
+
+import com.ajaguilar.Taller.Modelo.Reparacion;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -8,6 +11,7 @@ import javafx.fxml.FXML;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.NumberAxis;
+import javafx.scene.chart.XYChart;
 
 public class GananciasController {
 	@FXML
@@ -30,7 +34,27 @@ public class GananciasController {
         
         ejeX.setCategories(nombreMeses);
         //Etiquetas de los ejes
-        ejeX.setLabel("Mes de nacimiento");
-        ejeY.setLabel("Número de personas");
+        ejeX.setLabel("Mes del año");
+        ejeY.setLabel("Dinero");
+    }
+    
+    public void setDatosDinero(List<Reparacion> reparacion) {
+        
+        int[] numMes = new int[12];
+        for (Reparacion p : reparacion) {
+        	String[] parts = p.getFecha().split("-");
+            int mes = Integer.parseInt(parts[1]) ;
+            //numMes[mes]++; Cuenta el numero de reparaciones por mes.
+            numMes[mes]=(int) (numMes[mes]+p.getPrecio()); //Cuenta dinero ganado por mes.
+        }
+
+        XYChart.Series<String, Integer> series = new XYChart.Series<>();
+        series.setName("Mes del año");
+        for (int i = 0; i < numMes.length; i++) {
+            series.getData().add(new XYChart.Data<>(nombreMeses.get(i), numMes[i]));
+        }
+
+        graficoBarras.getData().add(series);
+        
     }
 }

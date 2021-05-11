@@ -116,7 +116,8 @@ public class PrimaryController {
     }
 	@FXML
     private void switchToGanancias() throws IOException {
-	    try {
+		// App.setRoot("ganancias");
+		try {
 	        // Load the fxml file and create a new stage for the popup dialog.
 	        FXMLLoader loader = new FXMLLoader();
 	        loader.setLocation(App.class.getResource("ganancias.fxml"));
@@ -129,6 +130,12 @@ public class PrimaryController {
 	       // dialogStage.initOwner(PrimaryStage);
 	        Scene scene = new Scene(page);
 	        dialogStage.setScene(scene);
+	        
+	        //Asigno el controlador
+	        GananciasController controller = loader.getController();
+	        controller.setDatosDinero(ReparacionDAO.getTodasRepas());
+
+	        //Muestro el escenario
 	        dialogStage.show();
 
 	    } catch (IOException e) {
