@@ -102,7 +102,29 @@ public class PrimaryController {
 
 	        // Create the dialog Stage.
 	        Stage dialogStage = new Stage();
-	        dialogStage.setTitle("Edit Person");
+	        dialogStage.setTitle("Edit Conexion");
+	        dialogStage.initModality(Modality.APPLICATION_MODAL);
+	       // dialogStage.initOwner(PrimaryStage);
+	        Scene scene = new Scene(page);
+	        dialogStage.setScene(scene);
+	        dialogStage.show();
+
+	    } catch (IOException e) {
+	        e.printStackTrace();
+	    }
+	
+    }
+	@FXML
+    private void switchToGanancias() throws IOException {
+	    try {
+	        // Load the fxml file and create a new stage for the popup dialog.
+	        FXMLLoader loader = new FXMLLoader();
+	        loader.setLocation(App.class.getResource("ganancias.fxml"));
+	        AnchorPane page = (AnchorPane) loader.load();
+
+	        // Create the dialog Stage.
+	        Stage dialogStage = new Stage();
+	        dialogStage.setTitle("Ganancias");
 	        dialogStage.initModality(Modality.APPLICATION_MODAL);
 	       // dialogStage.initOwner(PrimaryStage);
 	        Scene scene = new Scene(page);

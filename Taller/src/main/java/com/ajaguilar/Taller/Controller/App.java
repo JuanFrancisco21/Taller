@@ -20,7 +20,7 @@ public class App extends Application {
     public void start(Stage stage) throws IOException {
         // Set the application icon.  getClass().getResource("Taller/src/main/resources/Images/taller.png").toExternalForm()
 
-        //stage.getIcons().add(new Image("file:/Taller/src/main/resources/Images/taller.png"));
+        stage.getIcons().add(new Image("file:taller.png"));
         stage.setTitle("EURO-TALLER");
     	scene = new Scene(loadFXML("primary"), 640, 480);
     	stage.setScene(scene);
