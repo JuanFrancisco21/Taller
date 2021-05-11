@@ -16,16 +16,22 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Dialog;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.util.converter.DoubleStringConverter;
+import javafx.util.converter.IntegerStringConverter;
 import javafx.util.converter.LocalDateStringConverter;
 
 public class SecondaryController {
 
 	@FXML
-	public ObservableList<Reparacion> Reparaciones;
+	public static ObservableList<Client> clientes;
+	@FXML
+	public static ObservableList<Reparacion> Reparaciones;
+	
 	
 	@FXML
 	private TextField textPrecio;
@@ -61,10 +67,22 @@ public class SecondaryController {
     @FXML
     private void switchToPrimary() throws IOException {
         App.setRoot("primary");
+        
+    }
+    
+    public static void initList(ObservableList<Client> clientList, ObservableList<Reparacion> reparacionList	) {
+    	Reparaciones=FXCollections.observableArrayList();
+    	clientes=FXCollections.observableArrayList();
+
+    	clientes.setAll(clientList);
+    	Reparaciones.setAll(reparacionList);
+
     }
     
     @FXML
     private void initialize() {
+    	Reparaciones.forEach(item->System.out.println(item));
+
     	ConfidRepa();
     }
     
@@ -87,6 +105,7 @@ public class SecondaryController {
         	
         	a.guardar();
         	Reparaciones.add(a);
+
 		} catch (Exception e) {
 			System.out.println("Error al crear reparacion");
 		}
@@ -111,18 +130,29 @@ public class SecondaryController {
 	    }
 	}
     private void ConfidRepa() {
-    	this.Reparaciones=FXCollections.observableArrayList();
-		this.Reparaciones.setAll(ReparacionDAO.getTodasRepas());
-		
-		
+
+    
 		idColumna.setCellValueFactory(cellData -> {
             return new SimpleObjectProperty<>(cellData.getValue().getId());
         });
+		//idColumna.setCellFactory(TextFieldTableCell.<Reparacion, Integer>forTableColumn(new IntegerStringConverter()));
+        /*idColumna.setOnEditCommit(
+                new EventHandler<TableColumn.CellEditEvent<Reparacion, Integer>>() {
+            @Override
+            public void handle(TableColumn.CellEditEvent<Reparacion, Integer> t) {
+
+            	Reparacion selected = (Reparacion) t.getTableView().getItems().get(
+                        t.getTablePosition().getRow());
+                selected.setPrecio(t.getNewValue());
+                ReparacionDAO cc = new ReparacionDAO(selected);
+                cc.guardar();
+            }
+        });*/
         
         precioColumna.setCellValueFactory(cellData -> {
             return new SimpleObjectProperty<>(cellData.getValue().getPrecio());
         });
-        //precioColumna.setCellFactory(TextFieldTableCell.forTableColumn());
+        precioColumna.setCellFactory(TextFieldTableCell.<Reparacion, Double>forTableColumn(new DoubleStringConverter()));
         precioColumna.setOnEditCommit(
                 new EventHandler<TableColumn.CellEditEvent<Reparacion, Double>>() {
             @Override
@@ -170,19 +200,7 @@ public class SecondaryController {
        fechaColumna.setCellValueFactory(cellData -> {
             return new SimpleObjectProperty<>(cellData.getValue().getFecha());
         });
-        //fechaColumna.setCellFactory(TextFieldTableCell.forTableColumn());
-        /*fechaColumna.setOnEditCommit(
-                new EventHandler<TableColumn.CellEditEvent<Reparacion, String>>() {
-            @Override
-            public void handle(TableColumn.CellEditEvent<Reparacion, String> t) {
-
-            	Reparacion selected = (Reparacion) t.getTableView().getItems().get(
-                        t.getTablePosition().getRow());
-                selected.setFecha(t.getNewValue());
-                ReparacionDAO cc = new ReparacionDAO(selected);
-                cc.guardar();
-            }
-        });*/
+        
         tablaReparaciones.setEditable(true);
         tablaReparaciones.setItems(Reparaciones);
         tablaReparaciones.getSelectionModel()

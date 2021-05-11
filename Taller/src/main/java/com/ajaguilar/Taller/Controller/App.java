@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -17,6 +18,10 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
+    	stage.setTitle("EURO-TALLER");
+
+        // Set the application icon. C:\Users\HP.LAPTOP-0EU979JV\git\taller\Taller\src\main\resources\Images
+        stage.getIcons().add(new Image("file:resources/Images/icon-taller.png"));
     	scene = new Scene(loadFXML("primary"), 640, 480);
     	stage.setScene(scene);
         stage.show();

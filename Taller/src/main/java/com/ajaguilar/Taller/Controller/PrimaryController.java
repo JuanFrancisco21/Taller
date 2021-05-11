@@ -57,6 +57,8 @@ public class PrimaryController {
 	@FXML
 	private Button deletePerson;
 	@FXML
+	private Button changeview;
+	@FXML
 	private Button Search;
 	@FXML
 	private Button SearchAll;
@@ -65,8 +67,13 @@ public class PrimaryController {
 	
 	@FXML
 	protected void initialize() {
-		System.out.println("Cargando...");
-		configuraTablas();
+		try {
+			System.out.println("Cargando...");
+			configuraTablas();
+		} catch (Exception e) {
+		System.out.println("Error al configurar tablas");
+		}
+		
 		
 		
 		
@@ -74,6 +81,7 @@ public class PrimaryController {
 	@FXML
     private void switchToSecondary() throws IOException {
         App.setRoot("secondary");
+        SecondaryController.initList(clientes, Reparaciones);
     }
 	@FXML
     private void save() {
@@ -219,13 +227,9 @@ public class PrimaryController {
 		tablaClientes.setItems(clientes);
 		
 		//configuraTablareparaciones
-		
 		this.Reparaciones=FXCollections.observableArrayList();
-		this.Reparaciones.setAll(ReparacionDAO.getTodasRepas());
+		this.Reparaciones.addAll(ReparacionDAO.getTodasRepas());
 		
-		idColumna.setCellValueFactory(cellData -> {
-            return new SimpleObjectProperty<>(cellData.getValue().getId());
-        });
         
         precioColumna.setCellValueFactory(cellData -> {
             return new SimpleObjectProperty<>(cellData.getValue().getPrecio());
@@ -234,7 +238,7 @@ public class PrimaryController {
             return new SimpleObjectProperty<>(cellData.getValue().getMatricula());
         });
         
-		
+        
         tablaReparaciones.setItems(Reparaciones);
         showRepara(null);
 		
@@ -245,9 +249,10 @@ public class PrimaryController {
 			List<Reparacion> r=ReparacionDAO.getReparacionByClient(c.getDni());
 			Reparaciones.addAll(r);
 			deletePerson.setDisable(false);
-
+			changeview.setDisable(false);
 
 		} else {
+			changeview.setDisable(true);
 			deletePerson.setDisable(true);
 		}
 

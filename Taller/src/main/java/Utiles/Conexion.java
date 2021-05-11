@@ -12,20 +12,20 @@ import java.util.List;
 
 public class Conexion {
 	private static Connection con;
-	private final static String server="jdbc:Mysql://localhost"; //"jdbc:Mysql://localhost"
-	private final static String database="taller";	//"taller"
-	private final static String username="root";	//"root"
-	private final static String password="";	//""
+	private final static String server=XMLUtil.loadDataXML().getServer(); //"jdbc:Mysql://localhost"
+	private final static String database=XMLUtil.loadDataXML().getDatabase();	//"taller"
+	private final static String username=XMLUtil.loadDataXML().getUserName();	//"root"
+	private final static String password=XMLUtil.loadDataXML().getPassword();	//""
 	
 	public static void conecta() {
 		 try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			con=DriverManager.getConnection(server+"/"+database,username,password);
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
+			System.out.println("Error al conectar la base de datos");
 			e.printStackTrace();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			System.out.println("Error al conectar la base de datos");
 			con=null;
 			e.printStackTrace();
 		}

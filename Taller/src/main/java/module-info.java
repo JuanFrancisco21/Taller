@@ -4,6 +4,7 @@ module com.ajaguilar.Taller {
     requires java.xml.bind;
     requires java.sql;
     requires javafx.base;
+	requires javafx.graphics;
 
     opens com.ajaguilar.Taller.Controller to javafx.fxml;
     opens com.ajaguilar.Taller.Modelo to java.xml.bind;
