@@ -18,11 +18,16 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 public class PrimaryController {
 	@FXML
@@ -88,8 +93,29 @@ public class PrimaryController {
         App.setRoot("secondary");
     }
 	@FXML
+    private void switchToConexion() throws IOException {
+	    try {
+	        // Load the fxml file and create a new stage for the popup dialog.
+	        FXMLLoader loader = new FXMLLoader();
+	        loader.setLocation(App.class.getResource("conexion.fxml"));
+	        AnchorPane page = (AnchorPane) loader.load();
+
+	        // Create the dialog Stage.
+	        Stage dialogStage = new Stage();
+	        dialogStage.setTitle("Edit Person");
+	        dialogStage.initModality(Modality.APPLICATION_MODAL);
+	       // dialogStage.initOwner(PrimaryStage);
+	        Scene scene = new Scene(page);
+	        dialogStage.setScene(scene);
+	        dialogStage.show();
+
+	    } catch (IOException e) {
+	        e.printStackTrace();
+	    }
+	
+    }
+	@FXML
     private void save() {
-       // Utiles.saveFile(PersonaDAO.mockList);
     }
 	@FXML
 	private void addPersona() {

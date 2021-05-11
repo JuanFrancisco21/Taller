@@ -1,30 +1,34 @@
 package com.ajaguilar.Taller.Controller;
 
-import java.io.IOException;
 
-import com.ajaguilar.Taller.Modelo.Client;
-import com.ajaguilar.Taller.Modelo.Reparacion;
+import com.ajaguilar.Taller.Modelo.Connection;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+import Utiles.XMLUtil;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 public class ConexionController {
 		
 	@FXML
-	private Label ServerLabel;
+	private TextField ServerText;
 	@FXML
-	private Label DatabaseLabel;
+	private TextField DatabaseText;
 	@FXML
-	private Label UsuarioLabel;
+	private TextField UsuarioText;
 	@FXML
-	private Label ContraseñaLabel;
+	private TextField ContraseñaText;
 	
 	@FXML
-    private void switchToPrimary() throws IOException {
-        App.setRoot("primary");
-        
+	public Button closeButton;
+	
+	
+	@FXML
+    public void handleCloseButtonAction() {
+        Stage stage = (Stage) closeButton.getScene().getWindow();
+        stage.close();
     }
   
     
@@ -33,7 +37,22 @@ public class ConexionController {
     	ConfigCon();
     }
     
-    private static void ConfigCon() {
+    @FXML
+    private void save() {
+    	Connection a=new Connection();
+    	a.setServer(ServerText.getText());
+    	a.setDatabase(DatabaseText.getText());
+    	a.setUserName(UsuarioText.getText());
+    	a.setPassword(ContraseñaText.getText());
+    	XMLUtil.writeDataXML(a);
     	
+    	handleCloseButtonAction();
+    }
+    
+    private void ConfigCon() {
+    	ServerText.setText(XMLUtil.loadDataXML().getServer());
+    	DatabaseText.setText(XMLUtil.loadDataXML().getDatabase());
+    	UsuarioText.setText(XMLUtil.loadDataXML().getUserName());
+    	ContraseñaText.setText(XMLUtil.loadDataXML().getPassword());
     }
 }

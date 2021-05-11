@@ -2,7 +2,6 @@ package com.ajaguilar.Taller.Controller;
 
 import java.io.IOException;
 import java.time.LocalDate;
-import java.util.Date;
 
 import com.ajaguilar.Taller.Modelo.Client;
 import com.ajaguilar.Taller.Modelo.Reparacion;
@@ -16,14 +15,14 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
-import javafx.scene.control.Dialog;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.util.converter.DoubleStringConverter;
-import javafx.util.converter.IntegerStringConverter;
-import javafx.util.converter.LocalDateStringConverter;
+
 
 public class SecondaryController {
 
@@ -40,7 +39,7 @@ public class SecondaryController {
 	@FXML
 	private TextField textDescripcion;
 	@FXML
-	private TextField textoDescripcion;
+	private TextArea textoDescripcion;
 	@FXML
 	private DatePicker fecha =new DatePicker();
 	
@@ -197,6 +196,7 @@ public class SecondaryController {
     private void muestraInfo(Reparacion p) {
 		if(p!=null) {
 			textoDescripcion.setText(p.getDescripcion());
+			textoDescripcion.setWrapText(true);
 			
 		}else {
 			textoDescripcion.setText("No selecionado");
