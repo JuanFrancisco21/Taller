@@ -33,11 +33,13 @@ public class GananciasController {
         nombreMeses.addAll(Arrays.asList(meses));
         
         ejeX.setCategories(nombreMeses);
-        //Etiquetas de los ejes
         ejeX.setLabel("Mes del año");
         ejeY.setLabel("Dinero");
     }
-    
+    /**
+     * Metodo para setear datos de las reparaciones en la gráfica.
+     * @param reparacion, lista de reparaciones
+     */
     public void setDatosDinero(List<Reparacion> reparacion) {
         
         int[] numMes = new int[12];

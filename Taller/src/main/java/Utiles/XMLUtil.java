@@ -13,7 +13,10 @@ import javafx.scene.control.Dialog;
 
 public class XMLUtil {
     public static String file="conn.xml";
-    
+    /**
+     * Metodo para cargar datos de la conexion del programa con la base de datos de un archivo .xml
+     * @return devuelve un objeto Connection
+     */
     public static Connection loadDataXML() {
         Connection result=new Connection();       
         File f=new File(file);
@@ -30,7 +33,10 @@ public class XMLUtil {
         }
         return result;
     }
-    
+    /**
+     * Metodo para guardar datos de la conexion del programa con la base de datos en un archivo .xml
+     * @param data Objeto con los datos de la conexion a gurdar
+     */
     public static void writeDataXML(Connection data){
         JAXBContext context;
         try {

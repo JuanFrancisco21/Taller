@@ -85,6 +85,10 @@ public class PrimaryController {
 		
 		
 	}
+	/**
+	 * Método para cambiar de vista hacia las reparaciones del cliente selecionado.
+	 * @throws IOException
+	 */
 	@FXML
     private void switchToSecondary() throws IOException {
 	    Client selected = tablaClientes.getSelectionModel().getSelectedItem();
@@ -92,6 +96,11 @@ public class PrimaryController {
 
         App.setRoot("secondary");
     }
+	
+	/**
+	 * Habre una ventana emergente, donde cambiar datos de la conexion.
+	 * @throws IOException 
+	 */
 	@FXML
     private void switchToConexion() throws IOException {
 	    try {
@@ -114,28 +123,28 @@ public class PrimaryController {
 	    }
 	
     }
+	
+	/**
+	 * Habre una ventana hacia la grafica de ganacias del año.
+	 * @throws IOException execpcion .
+	 */
 	@FXML
     private void switchToGanancias() throws IOException {
 		// App.setRoot("ganancias");
 		try {
-	        // Load the fxml file and create a new stage for the popup dialog.
 	        FXMLLoader loader = new FXMLLoader();
 	        loader.setLocation(App.class.getResource("ganancias.fxml"));
 	        AnchorPane page = (AnchorPane) loader.load();
 
-	        // Create the dialog Stage.
 	        Stage dialogStage = new Stage();
 	        dialogStage.setTitle("Ganancias");
 	        dialogStage.initModality(Modality.APPLICATION_MODAL);
-	       // dialogStage.initOwner(PrimaryStage);
 	        Scene scene = new Scene(page);
 	        dialogStage.setScene(scene);
 	        
-	        //Asigno el controlador
 	        GananciasController controller = loader.getController();
 	        controller.setDatosDinero(ReparacionDAO.getTodasRepas());
 
-	        //Muestro el escenario
 	        dialogStage.show();
 
 	    } catch (IOException e) {
@@ -143,9 +152,10 @@ public class PrimaryController {
 	    }
 	
     }
-	@FXML
-    private void save() {
-    }
+	
+	/**
+	 * Método para añadir a un cliente en la base de datos, como tambien en la ObservableList.
+	 */
 	@FXML
 	private void addPersona() {
 		
@@ -156,6 +166,9 @@ public class PrimaryController {
 		clientes.add(a);
 	}
 	
+	/**
+	 * Método para borrar a un cliente de la base de datos como de la ObservableList.
+	 */
 	@FXML
 	private void deletePersona() {
 	    Client selected = tablaClientes.getSelectionModel().getSelectedItem();
@@ -174,7 +187,9 @@ public class PrimaryController {
 	    }
 	}
 	
-	
+	/**
+	 * Traer todos los clientes de la base de datos a la tabla.
+	 */
 	@FXML
 	private void searchAll() {
         clientes.clear();
@@ -182,6 +197,9 @@ public class PrimaryController {
             newC=ClientDAO.TodosClient();
         clientes.addAll(newC);
 	}
+	/**
+	 * Metodo para buscar un cliente mediante un trozo de dni.
+	 */
 	@FXML
 	private void search() {
 		String pattern=DniCliente.getText();
@@ -203,6 +221,9 @@ public class PrimaryController {
 
 	}
 	
+	/**
+	 * Metodo para configurar las columnas de las dos tablas.
+	 */
 	private void configuraTablas() {
 		this.clientes=FXCollections.observableArrayList();
 		this.clientes.setAll(ClientDAO.TodosClient());
@@ -268,6 +289,10 @@ public class PrimaryController {
         showRepara(null);
 		
 	}
+	/**
+	 * Muestra la informacion de reparaciones de un cliente
+	 * @param c cliente selecionado
+	 */
 	private void showRepara(Client c) {
 		Reparaciones.clear();
 		if (c != null) {

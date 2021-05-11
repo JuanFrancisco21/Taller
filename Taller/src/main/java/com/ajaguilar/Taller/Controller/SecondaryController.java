@@ -68,7 +68,11 @@ public class SecondaryController {
         App.setRoot("primary");
         
     }
-    
+    /**
+     * Método para pasar listas de la 1º vista a la actual.
+     * @param clientObj (cliente).
+     * @param reparacionList (lista de reparaciones del cliente).
+     */
     public static void initList(Client clientObj, ObservableList<Reparacion> reparacionList	) {
     	Reparaciones=FXCollections.observableArrayList();
     	cliente=new Client();
@@ -83,6 +87,9 @@ public class SecondaryController {
     	ConfidRepa();
     }
     
+    /**
+     * Método para añadir una reparacion a la BBDD y a la ObservableList.
+     */
     @FXML
     private void addRepa() {
     
@@ -109,6 +116,9 @@ public class SecondaryController {
 		}
     	
     }
+    /**
+     * Método para borrar una reparacion de la BBDD y de la ObservableList.
+     */
     @FXML
 	private void deleteRepa() {
 	    Reparacion selected = tablaReparaciones.getSelectionModel().getSelectedItem();
@@ -127,10 +137,11 @@ public class SecondaryController {
 	    
 	    }
 	}
-    private void ConfidRepa() {
-    	//Reparaciones.forEach(item->System.out.println(item));
     
-	
+    /**
+     * Método para configurar datos de la tabla.
+     */
+    private void ConfidRepa() {    
         
         precioColumna.setCellValueFactory(cellData -> {
             return new SimpleObjectProperty<>(cellData.getValue().getPrecio());
@@ -193,6 +204,11 @@ public class SecondaryController {
 		});
         
     }
+    
+    /**
+     * Muestra la descripcion de la reparacion seleccionada.
+     * @param p, reparacion a mostrar.
+     */
     private void muestraInfo(Reparacion p) {
 		if(p!=null) {
 			textoDescripcion.setText(p.getDescripcion());

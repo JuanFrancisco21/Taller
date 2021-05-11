@@ -24,7 +24,9 @@ public class ConexionController {
 	@FXML
 	public Button closeButton;
 	
-	
+	/**
+	 * Modo de cierre de la ventana.
+	 */
 	@FXML
     public void handleCloseButtonAction() {
         Stage stage = (Stage) closeButton.getScene().getWindow();
@@ -36,7 +38,9 @@ public class ConexionController {
     private void initialize() {
     	ConfigCon();
     }
-    
+    /**
+     * Método para guardar datos de la conexion.
+     */
     @FXML
     private void save() {
     	Connection a=new Connection();
@@ -48,7 +52,9 @@ public class ConexionController {
     	
     	handleCloseButtonAction();
     }
-    
+    /**
+     * Método para mostrar datos de la conexion.
+     */
     private void ConfigCon() {
     	ServerText.setText(XMLUtil.loadDataXML().getServer());
     	DatabaseText.setText(XMLUtil.loadDataXML().getDatabase());

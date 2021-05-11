@@ -32,12 +32,29 @@ public class ReparacionDAO extends Reparacion {
 			+ "client.nombre,client.direccion "
 			+ "FROM reparacion,client WHERE reparacion.dni_client=client.dni AND reparacion.dni_client=?";
 	
+	/**
+	 * Contructor Full ReparacionDAO.
+	 * @param precio de la reparacion.
+	 * @param matricula del vehiculo.
+	 * @param descripcion de la reparacion.
+	 * @param fecha de la reparacion.
+	 * @param cliente al que pertenece el vehiculo.
+	 */
 	public ReparacionDAO(double precio,String matricula,String descripcion,String fecha, Client cliente) {
 		super(precio,matricula,descripcion, fecha,cliente);
 	}
+	
+	/**
+	 * Contructor por defecto ReparacionDAO
+	 */
 	public ReparacionDAO() {
 		super();
 	}
+	
+	/**
+	 * Método conversor de Reparacion a ReparacionDAO.
+	 * @param r Reparacion a convertir.
+	 */
 	public ReparacionDAO(Reparacion r) {
 		this.id=r.getId();
 		this.precio=r.getPrecio();
@@ -47,6 +64,10 @@ public class ReparacionDAO extends Reparacion {
 		this.miclient=r.getMiclient();
 	}
 	
+	/**
+	 * Busqueda de Reparacion mediante el id.
+	 * @param id de busqueda.
+	 */
 	public ReparacionDAO(int id) {
 		super();
 		Connection con = Conexion.getConexion();
@@ -71,6 +92,10 @@ public class ReparacionDAO extends Reparacion {
 			}
 		}
 	}
+	/**
+	 * Busqueda de Reparacion mediante la matricula.
+	 * @param matricula de busqueda.
+	 */
 	public ReparacionDAO(String matricula) {
 		super();
 		Connection con = Conexion.getConexion();
@@ -96,6 +121,10 @@ public class ReparacionDAO extends Reparacion {
 			}
 		}
 	}
+	/**
+	 * Método para obtener todas las reparaciones de la base de datos.
+	 * @return lista de reparacines.
+	 */
 	public static List<Reparacion> getTodasRepas() {
 		List<Reparacion> result=new ArrayList<Reparacion>();
 		Connection con = Conexion.getConexion();
@@ -125,6 +154,11 @@ public class ReparacionDAO extends Reparacion {
 		
 		return result;
 	}
+	/**
+	 * Método para obtener reparaciones mediante el id.
+	 * @param id, parametro de busqueda.
+	 * @return lista de reparaciones.
+	 */
 	public static List<Reparacion> getReparacionById(int id) {
 		List<Reparacion> result=new ArrayList<Reparacion>();
 		Connection con = Conexion.getConexion();
@@ -156,7 +190,10 @@ public class ReparacionDAO extends Reparacion {
 		return result;
 	}
 
-	
+	/**
+	 * Método de guardado de reparacion en la BBDD.
+	 * @return devuelve un entero.
+	 */
 	public int guardar() {
 
 		int rs=0;
@@ -187,6 +224,10 @@ public class ReparacionDAO extends Reparacion {
 		return rs;
 	}
 	
+	/**
+	 * Método para borra una reparacion de la BBDD.
+	 * @return devuelve un entero.
+	 */
 	public int eliminar() {
 		int rs=0;
 		Connection con = Conexion.getConexion();
@@ -205,6 +246,9 @@ public class ReparacionDAO extends Reparacion {
 		return rs;
 	}
 	
+	/**
+	 * Método para obtener un cliente.
+	 */
 	@Override
 	public Client getMiclient() {
 		if(this.miclient==null || this.miclient.getDni().equals("-1")) {
@@ -215,6 +259,11 @@ public class ReparacionDAO extends Reparacion {
 		return super.getMiclient();
 	}
 	
+	/**
+	 * Método para obtener reparaciones mediante un cliente.
+	 * @param dni, parametro de busqueda.
+	 * @return devuelve un lista de reparaciones.
+	 */
 	public static List<Reparacion> getReparacionByClient(String dni) {
 		List<Reparacion> result=new ArrayList<Reparacion>();
 		
