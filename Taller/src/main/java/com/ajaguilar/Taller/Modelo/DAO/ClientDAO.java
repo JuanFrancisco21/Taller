@@ -15,7 +15,7 @@ import Utiles.Conexion;
 
 
 
-public class ClientDAO extends Client {
+public class ClientDAO extends Client implements DAO{
 
 	private final static String GETBYDNI = "SELECT dni,nombre,direccion FROM client WHERE dni=";
 	private final static String INSERTUPDATE="INSERT INTO client (dni, nombre, direccion) "

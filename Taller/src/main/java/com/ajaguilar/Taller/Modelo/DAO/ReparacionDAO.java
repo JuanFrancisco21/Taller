@@ -16,7 +16,7 @@ import com.ajaguilar.Taller.Modelo.Reparacion;
 
 import Utiles.Conexion;
 
-public class ReparacionDAO extends Reparacion {
+public class ReparacionDAO extends Reparacion implements DAO {
 	private static final String GETBYID="SELECT id,precio,matricula,descripcion,dni_client as client FROM reparacion WHERE id=";
 	private static final String GETBYMATRI="SELECT id,precio,matricula,descripcion,dni_client as client FROM reparacion WHERE matricula=";
 	private static final String DELETE="DELETE FROM reparacion WHERE id=?";
