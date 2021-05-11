@@ -18,10 +18,9 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-    	stage.setTitle("EURO-TALLER");
-
-        // Set the application icon. C:\Users\HP.LAPTOP-0EU979JV\git\taller\Taller\src\main\resources\Images
-        stage.getIcons().add(new Image("file:resources/Images/icon-taller.png"));
+        // Set the application icon.
+        stage.getIcons().add(new Image("/Taller/src/main/resources/Images/icon-taller.jpg"));
+        stage.setTitle("EURO-TALLER");
     	scene = new Scene(loadFXML("primary"), 640, 480);
     	stage.setScene(scene);
         stage.show();
