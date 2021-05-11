@@ -55,31 +55,29 @@
                <children>
                   <HBox spacing="5.0" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0">
                      <children>
-                        <Button fx:id="changeview" layoutX="197.1875" layoutY="241.0" mnemonicParsing="false" onAction="#switchToSecondary" prefHeight="33.0" prefWidth="140.0" text="Reparaciones" />
+                        <Button fx:id="changeview" layoutX="197.1875" layoutY="241.0" mnemonicParsing="false" onAction="#switchToSecondary" prefHeight="33.0" prefWidth="140.0" text="Editar" />
                      </children>
                   </HBox>
-                  <TableView fx:id="tablaReparaciones" layoutX="11.0" layoutY="14.0" prefHeight="238.0" prefWidth="225.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="70.0">
+                  <TableView fx:id="tablaReparaciones" layoutX="11.0" layoutY="35.0" prefHeight="304.0" prefWidth="233.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="35.0">
                     <columns>
                       <TableColumn fx:id="precioColumna" prefWidth="93.0" text="Precio" />
                         <TableColumn fx:id="matriculaColumna" prefWidth="124.0" text="Matricula" />
                     </columns>
                   </TableView>
-                  <TextField fx:id="IDRepa" layoutX="10.0" layoutY="32.0" prefHeight="37.0" prefWidth="119.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="32.0" />
-                  <Label layoutX="13.0" layoutY="8.0" prefHeight="21.0" prefWidth="97.0" text="Id Reparacion" AnchorPane.leftAnchor="13.0" AnchorPane.topAnchor="8.0">
+                  <Label layoutX="10.0" layoutY="14.0" prefHeight="33.0" prefWidth="125.0" text="Reparaciones" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="14.0">
                      <font>
-                        <Font name="System Bold Italic" size="12.0" />
+                        <Font name="System Bold Italic" size="16.0" />
                      </font>
                   </Label>
-                  <Button fx:id="Searchid" layoutX="136.0" layoutY="33.0" maxWidth="97.0" mnemonicParsing="false" onAction="#searchRepa" prefHeight="33.0" prefWidth="97.0" text="Buscar" />
                </children>
             </AnchorPane>
          </items>
       </SplitPane>
-      <MenuBar AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <MenuBar styleClass="context-menu" stylesheets="@Darktheme.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <menus>
           <Menu mnemonicParsing="false" text="Conectar">
             <items>
-              <MenuItem mnemonicParsing="false" text="MySQL" />
+              <MenuItem mnemonicParsing="false" text="Editar" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Editar">

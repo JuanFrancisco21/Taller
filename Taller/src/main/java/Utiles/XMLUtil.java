@@ -25,7 +25,6 @@ public class XMLUtil {
                 result=conec;
             }catch(JAXBException ex){
                 ex.printStackTrace();
-                //Dialog.showError("ERROR", "Error writing "+file, ex.toString());
                 result=new Connection();
             }
         }

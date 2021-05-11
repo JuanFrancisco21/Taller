@@ -28,7 +28,7 @@ import javafx.util.converter.LocalDateStringConverter;
 public class SecondaryController {
 
 	@FXML
-	public static ObservableList<Client> clientes;
+	public static Client cliente;
 	@FXML
 	public static ObservableList<Reparacion> Reparaciones;
 	
@@ -42,7 +42,7 @@ public class SecondaryController {
 	@FXML
 	private TextField textoDescripcion;
 	@FXML
-	private DatePicker fecha;
+	private DatePicker fecha =new DatePicker();
 	
 	@FXML
 	private TableView<Reparacion> tablaReparaciones;
@@ -70,18 +70,16 @@ public class SecondaryController {
         
     }
     
-    public static void initList(ObservableList<Client> clientList, ObservableList<Reparacion> reparacionList	) {
+    public static void initList(Client clientObj, ObservableList<Reparacion> reparacionList	) {
     	Reparaciones=FXCollections.observableArrayList();
-    	clientes=FXCollections.observableArrayList();
+    	cliente=new Client();
 
-    	clientes.setAll(clientList);
+    	cliente=clientObj;
     	Reparaciones.setAll(reparacionList);
-
     }
     
     @FXML
     private void initialize() {
-    	Reparaciones.forEach(item->System.out.println(item));
 
     	ConfidRepa();
     }
@@ -95,8 +93,9 @@ public class SecondaryController {
     		String m=textMatricula.getText();
     		String d=textDescripcion.getText();
     		String f =h.getYear()+"-"+h.getMonthValue()+"-"+h.getDayOfMonth();
-    		Client c=ClientDAO.buscaPorDni("31319229p");
+    		Client c=cliente;
     		Reparacion x =new Reparacion(2,p,m,d,f,c);
+    		
     		
     		ReparacionDAO a=new ReparacionDAO(x);
     		System.out.println(c.getDni());
@@ -130,24 +129,9 @@ public class SecondaryController {
 	    }
 	}
     private void ConfidRepa() {
-
+    	//Reparaciones.forEach(item->System.out.println(item));
     
-		idColumna.setCellValueFactory(cellData -> {
-            return new SimpleObjectProperty<>(cellData.getValue().getId());
-        });
-		//idColumna.setCellFactory(TextFieldTableCell.<Reparacion, Integer>forTableColumn(new IntegerStringConverter()));
-        /*idColumna.setOnEditCommit(
-                new EventHandler<TableColumn.CellEditEvent<Reparacion, Integer>>() {
-            @Override
-            public void handle(TableColumn.CellEditEvent<Reparacion, Integer> t) {
-
-            	Reparacion selected = (Reparacion) t.getTableView().getItems().get(
-                        t.getTablePosition().getRow());
-                selected.setPrecio(t.getNewValue());
-                ReparacionDAO cc = new ReparacionDAO(selected);
-                cc.guardar();
-            }
-        });*/
+	
         
         precioColumna.setCellValueFactory(cellData -> {
             return new SimpleObjectProperty<>(cellData.getValue().getPrecio());
@@ -208,6 +192,7 @@ public class SecondaryController {
 		.addListener((observable,oldValue,newValue)->{
 			muestraInfo(newValue);
 		});
+        
     }
     private void muestraInfo(Reparacion p) {
 		if(p!=null) {

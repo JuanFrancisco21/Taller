@@ -68,8 +68,10 @@ public class PrimaryController {
 	@FXML
 	protected void initialize() {
 		try {
+			
 			System.out.println("Cargando...");
 			configuraTablas();
+			
 		} catch (Exception e) {
 		System.out.println("Error al configurar tablas");
 		}
@@ -80,8 +82,10 @@ public class PrimaryController {
 	}
 	@FXML
     private void switchToSecondary() throws IOException {
+	    Client selected = tablaClientes.getSelectionModel().getSelectedItem();
+        SecondaryController.initList(selected, Reparaciones);
+
         App.setRoot("secondary");
-        SecondaryController.initList(clientes, Reparaciones);
     }
 	@FXML
     private void save() {
@@ -143,28 +147,7 @@ public class PrimaryController {
         
 
 	}
-	@FXML
-	private void searchRepa() {
-		String pattern=IDRepa.getText();
-		int i=Integer.parseInt(pattern);  
-
-        pattern=pattern.trim();
-        clientes.clear();
-        
-        List<Client> newC=new ArrayList<>();
-        if(i>0){
-            List<Reparacion> lc=new ArrayList<Reparacion>();
-            lc.addAll(ReparacionDAO.getReparacionById(i));
-            Reparaciones.clear();
-            Reparaciones.addAll(lc);
-        	lc.forEach(item->newC.add(item.getMiclient()));
-        }else {
-        	
-        }
-        clientes.addAll(newC);
-        
-
-	}
+	
 	private void configuraTablas() {
 		this.clientes=FXCollections.observableArrayList();
 		this.clientes.setAll(ClientDAO.TodosClient());
@@ -172,20 +155,7 @@ public class PrimaryController {
 		dniColumna.setCellValueFactory(cellData->{
 			return new SimpleObjectProperty<>(cellData.getValue().getDni());
 		});
-		dniColumna.setCellFactory(TextFieldTableCell.forTableColumn());
-        dniColumna.setOnEditCommit(
-                new EventHandler<TableColumn.CellEditEvent<Client, String>>() {
-            @Override
-            public void handle(TableColumn.CellEditEvent<Client, String> t) {
-
-            	Client selected = (Client) t.getTableView().getItems().get(
-                        t.getTablePosition().getRow());
-                selected.setDni(t.getNewValue());
-                ClientDAO cc = new ClientDAO(selected);
-                cc.guardar();
-            }
-        }
-        );
+		
 		nombreColumna.setCellValueFactory(cellData->{
 			return new SimpleObjectProperty<>(cellData.getValue().getNombre());
 		});
