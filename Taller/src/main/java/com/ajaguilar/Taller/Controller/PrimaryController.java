@@ -78,7 +78,7 @@ public class PrimaryController {
 			configuraTablas();
 			
 		} catch (Exception e) {
-		System.out.println("Error al configurar tablas");
+			Dialog.showError("Configurar tablas", "Ha surgido un error al configurar tablas 1º Vista","");
 		}
 		
 		
@@ -180,7 +180,8 @@ public class PrimaryController {
 			    
 			} catch (Exception e) {
 	    		deletePerson.setDisable(true);
-				System.out.println("Error al borrar persona");			
+				Dialog.showError("Borrar Persona", "Ha surgido un error al borrar la Persona","");
+	
 			}
 	    
 	    }

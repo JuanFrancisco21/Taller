@@ -98,6 +98,7 @@ public class SecondaryController {
     		String m=textMatricula.getText();
     		String d=textDescripcion.getText();
     		String f =h.getYear()+"-"+h.getMonthValue()+"-"+h.getDayOfMonth();
+    		System.out.println(f);
     		Client c=cliente;
     		
     		if (GUI.validaMatricula(textMatricula.getText()) && GUI.isDecimal(textPrecio.getText())) {
@@ -117,7 +118,7 @@ public class SecondaryController {
     		
 
 		} catch (Exception e) {
-			System.out.println("Error al crear reparacion");
+			Dialog.showError("Crear Reparacion", "Ha surgido un error al crear la reparacion", "Revise todos los campos de la nueva Reparación");
 		}
     	
     }
@@ -137,7 +138,7 @@ public class SecondaryController {
 			    
 			} catch (Exception e) {
 	    		deleteReparacion.setDisable(true);
-				System.out.println("Error al borrar reparacion");			
+				Dialog.showError("Borrar Reparacion", "Ha surgido un error al borrar la reparacion","");
 			}
 	    
 	    }
