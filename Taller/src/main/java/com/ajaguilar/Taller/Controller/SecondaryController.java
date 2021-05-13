@@ -8,6 +8,8 @@ import com.ajaguilar.Taller.Modelo.Reparacion;
 import com.ajaguilar.Taller.Modelo.DAO.ClientDAO;
 import com.ajaguilar.Taller.Modelo.DAO.ReparacionDAO;
 
+import Utiles.Dialog;
+import Utiles.GUI;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -94,22 +96,24 @@ public class SecondaryController {
     private void addRepa() {
     
     	try {
-    		LocalDate h=fecha.getValue();
-    		double p=Double.parseDouble(textPrecio.getText());
-    		String m=textMatricula.getText();
-    		String d=textDescripcion.getText();
-    		String f =h.getYear()+"-"+h.getMonthValue()+"-"+h.getDayOfMonth();
-    		Client c=cliente;
-    		Reparacion x =new Reparacion(2,p,m,d,f,c);
+    		if (GUI.validaMatricula(textMatricula.getText()) && GUI.isDecimal(textPrecio.getText())) {
+    			LocalDate h=fecha.getValue();
+        		double p=Double.parseDouble(textPrecio.getText());
+        		String m=textMatricula.getText();
+        		String d=textDescripcion.getText();
+        		String f =h.getYear()+"-"+h.getMonthValue()+"-"+h.getDayOfMonth();
+        		Client c=cliente;
+    			Reparacion x =new Reparacion(2,p,m,d,f,c);
+        		ReparacionDAO a=new ReparacionDAO(x);
+            	
+            	a.guardar();
+            	Reparaciones.add(a);
+			}else if (GUI.validaMatricula(textMatricula.getText())) {
+				Dialog.showWarning("Matricula", "Matricula no válida", "Formato= (1234 YYY)/(1234-YYY)/(1234 YY)");
+			}else if (GUI.isDecimal(textPrecio.getText())) {
+				Dialog.showWarning("Precio", "Precio no válido", "Debe ser un numero (con decimales)");
+			}
     		
-    		
-    		ReparacionDAO a=new ReparacionDAO(x);
-    		System.out.println(c.getDni());
-    		System.out.println(a);
-    		
-        	
-        	a.guardar();
-        	Reparaciones.add(a);
 
 		} catch (Exception e) {
 			System.out.println("Error al crear reparacion");

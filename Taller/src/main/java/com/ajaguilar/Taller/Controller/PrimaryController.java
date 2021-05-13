@@ -12,6 +12,8 @@ import com.ajaguilar.Taller.Modelo.Reparacion;
 import com.ajaguilar.Taller.Modelo.DAO.ClientDAO;
 import com.ajaguilar.Taller.Modelo.DAO.ReparacionDAO;
 
+import Utiles.Dialog;
+import Utiles.GUI;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -73,8 +75,6 @@ public class PrimaryController {
 	@FXML
 	protected void initialize() {
 		try {
-			
-			System.out.println("Cargando...");
 			configuraTablas();
 			
 		} catch (Exception e) {
@@ -130,7 +130,6 @@ public class PrimaryController {
 	 */
 	@FXML
     private void switchToGanancias() throws IOException {
-		// App.setRoot("ganancias");
 		try {
 	        FXMLLoader loader = new FXMLLoader();
 	        loader.setLocation(App.class.getResource("ganancias.fxml"));
@@ -175,9 +174,9 @@ public class PrimaryController {
 	    if (selected != null) {
 	    	try {
 	    		deletePerson.setDisable(false);
-			    clientes.remove(selected);
 			    ClientDAO a=new ClientDAO(selected);
 			    a.eliminar();
+			    clientes.remove(selected);
 			    
 			} catch (Exception e) {
 	    		deletePerson.setDisable(true);
@@ -231,6 +230,27 @@ public class PrimaryController {
 		dniColumna.setCellValueFactory(cellData->{
 			return new SimpleObjectProperty<>(cellData.getValue().getDni());
 		});
+		dniColumna.setCellFactory(TextFieldTableCell.forTableColumn());
+		dniColumna.setOnEditCommit(
+	                new EventHandler<TableColumn.CellEditEvent<Client, String>>() {
+	            @Override
+	            public void handle(TableColumn.CellEditEvent<Client, String> t) {
+	
+	            	Client selected = (Client) t.getTableView().getItems().get(
+	                        t.getTablePosition().getRow());
+	            	
+	            	if (GUI.validaDNI(t.getNewValue())==true) {
+		                selected.setDni(t.getNewValue());
+
+					} else {
+						Dialog.showWarning("Dni", "Dni no valido", "Formato= (12345678X)");
+						configuraTablas();
+					}
+	                ClientDAO cc = new ClientDAO(selected);
+	                cc.guardar();
+	            }
+	        }
+	        );
 		
 		nombreColumna.setCellValueFactory(cellData->{
 			return new SimpleObjectProperty<>(cellData.getValue().getNombre());
@@ -260,7 +280,7 @@ public class PrimaryController {
 
 	            	Client selected = (Client) t.getTableView().getItems().get(
 	                        t.getTablePosition().getRow());
-	                selected.setDireccion(t.getNewValue());
+		                selected.setDireccion(t.getNewValue());
 	                ClientDAO cc = new ClientDAO(selected);
 	                cc.guardar();
 	            }

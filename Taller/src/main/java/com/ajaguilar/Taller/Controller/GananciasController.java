@@ -1,5 +1,6 @@
 package com.ajaguilar.Taller.Controller;
 
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
 
@@ -45,13 +46,16 @@ public class GananciasController {
         int[] numMes = new int[12];
         for (Reparacion p : reparacion) {
         	String[] parts = p.getFecha().split("-");
-            int mes = Integer.parseInt(parts[1]) ;
-            //numMes[mes]++; Cuenta el numero de reparaciones por mes.
-            numMes[mes]=(int) (numMes[mes]+p.getPrecio()); //Cuenta dinero ganado por mes.
+        	if (Integer.parseInt(parts[0])==LocalDate.now().getYear()) {
+        		int mes = Integer.parseInt(parts[1]) ;
+                //numMes[mes]++; Cuenta el numero de reparaciones por mes.
+                numMes[mes]=(int) (numMes[mes]+p.getPrecio()); //Cuenta dinero ganado por mes.
+			}
+        	
         }
 
         XYChart.Series<String, Integer> series = new XYChart.Series<>();
-        series.setName("Mes del año");
+        series.setName("Ganancias del mes");
         for (int i = 0; i < numMes.length; i++) {
             series.getData().add(new XYChart.Data<>(nombreMeses.get(i), numMes[i]));
         }

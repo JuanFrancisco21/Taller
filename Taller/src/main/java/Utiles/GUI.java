@@ -5,114 +5,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class GUI {
-	/**
-	 * Obtener un entero introducido por teclado
-	 * @param frase Texto con la informacion deseada.
-	 * @return devuelve un entero introducido por teclado
-	 */
-	public static int  getint(String frase) {
-		@SuppressWarnings("resource")
-		Scanner teclado=new Scanner(System.in);
-		int result=-1;
-		
-		try {
-			//System.out.println(frase);
-			result=teclado.nextInt();
-		} catch (Exception e) {
-			System.out.println("Error al obtener entero.");
-		}
-		return result;
-	}
-	/**
-	 * Obtener edad entre 15-110 anios
-	 * @return devuelve un entero.
-	 */
-	public static int  getAge() {
-		@SuppressWarnings("resource")
-		Scanner teclado=new Scanner(System.in);
-		int result=-1;
-		
-		do {
-			try {
-				//Syso.print("Introduce la edad:");
-				result=teclado.nextInt();
-			} catch (Exception e) {
-				System.out.println("Error al obtener entero.");
-			}
-		} while (result<=15 && result>=110);
-		
-		return result;
-	}
-	/***
-	 * Obtener una cadena de caracteres.
-	 * @param frase Texto con la informacion deseada.
-	 * @return devuelve un string introducido por teclado
-	 */
-	public static String  getString(String frase) {
-		@SuppressWarnings("resource")
-		Scanner teclado=new Scanner(System.in);
-		String result=null;
-		
-		if (result==null) {
-			try {
-				//Syso.print(frase);
-				result=teclado.nextLine();
-			} catch (Exception e) {
-				System.out.println("Error al obtener string.");
-			}
-		}
-		
-		return result;
-	}
-	/**
-	 * Obtener Direecion formateada
-	 * @return string con la dirrecci�n
-	 */
-	public static String getAddress() {
-		String result=null;
-		@SuppressWarnings("resource")
-		Scanner teclado=new Scanner(System.in);
-
-		if (result==null) {
-			try {
-				//Syso.print("Introduce la direcccion");
-				result=teclado.nextLine();
-				while (!validaAddress(result)) {
-					//System.out.println("Vueleve a introducir una direccion valida(C/********):");
-					result=teclado.nextLine();
-					
-				}
-				
-			} catch (Exception e) {
-				System.out.println("Error al obtener string.");
-			}
-		}
-			
-		return result;
-	}
-	/**
-	 * Obtener dni validado como real.
-	 * @return string dni
-	 */
-	public static String getDni() {
-		 String result = null;
-	        @SuppressWarnings("resource")
-			Scanner miScanner = new Scanner(System.in);
-	        Pattern patron = Pattern.compile("[0-9]{7,8}[A-Z a-z]");
-	       // Syso.print("Introduce un DNI correcto: ");
-	        result = miScanner.nextLine();
-	        Matcher mat = patron.matcher(result);
-	       
-				while((!mat.matches() || !validaDNI(result))&&result.length()==9){
-					//Syso.print("El DNI introducido es incorrecto, por favor introduzca un DNI v�lido, con la letra en mayuscula.");
-			        //  Syso.print("Introduce un DNI correcto: ");
-			           result = miScanner.nextLine();
-			           mat = patron.matcher(result);
-			     }
-			
-	        
-	        return result;
-	}
+	
 	public static Boolean getDate(String fecha) {
 		 boolean result = false;
 	        Pattern patron = Pattern.compile("[0-9]{4}[-][0-1][0-9][-][0-3][0-9]");
@@ -131,7 +24,7 @@ public class GUI {
 	 * @param address direccion a validar
 	 * @return true si es corecta
 	 */
-	private static boolean validaAddress(String address) {
+	public static boolean validaAddress(String address) {
 		boolean result=false;
 		if(address!=null) {
 			char l1='C';
@@ -149,7 +42,7 @@ public class GUI {
 	 * @param dni string a validar
 	 * @return true si es valido
 	 */
-	private static boolean validaDNI(String dni){
+	public static boolean validaDNI(String dni){
 		boolean result=false;
 		if(dni.length()==9) {
 			char letra=dni.charAt(8);
@@ -172,32 +65,65 @@ public class GUI {
         return caracteres[resto];
    }
 	/**
-	 * Obtencion de booleano
-	 * @param frase Texto con la informacion deseada.
-	 * @return devuelve un boleano a decisi�n del usuario.
+	 * Método para validar una matricula real.
+	 * @param matricula a validar.
+	 * @return devuelve un booleano.
 	 */
-	public static Boolean  getBoolean(String frase) {
-		@SuppressWarnings("resource")
-		Scanner teclado=new Scanner(System.in);
-		Boolean result=null;
-		
-		if (result==null) {
-			try {
-				//Syso.print(frase);
-				//Syso.print("0=true 1=false");
+	public static boolean validaMatricula(String matricula) {
+		boolean result=false;
+		if(matricula!=null|| matricula!=" ") {
+			Pattern patron = Pattern.compile("[0-9]{4}\s[A-Z]{3}");
+			Pattern patron2= Pattern.compile("[0-9]{4}-[A-Z]{3}");
+			Pattern patron3= Pattern.compile("[0-9]{4}\s[A-Z]{2}");
 
-				if (teclado.nextInt()==1) {
-					result=true;
-				}else {
-					result=false;
+	        Matcher mat = patron.matcher(matricula);
+	        Matcher mat2 = patron2.matcher(matricula);
+	        Matcher mat3 = patron3.matcher(matricula);
+
+
+	       
+				if(mat.matches()){
+			           mat = patron.matcher(matricula);
+			           result=true;
+			     }else if (mat2.matches()) {
+			    	 	mat = patron.matcher(matricula);
+			    	 	result=true;
+				 }else if (mat3.matches()) {
+					 	mat = patron.matcher(matricula);
+					 	result=true;
 				}
-			} catch (Exception e) {
-				System.out.println("Error al obtener booleano.");
-			}
 		}
-		
 		return result;
-	} 
+	}
+	/**
+	 * Método paara validar si una cadena es decimal.
+	 * @param cad a evaluar.
+	 * @return devuelve un booleano.
+	 */
+	public static boolean isDecimal(String cad){
+		 try
+		 {
+		   Double.parseDouble(cad);
+		   return true;
+		 }
+		 catch(NumberFormatException nfe)
+		 {
+		   return false;
+		 }
+	 }
+	/**
+	 * Método para validar si una cadena es numérica.
+	 * @param cadena a validar.
+	 * @return devuelve un booleano.
+	 */
+	public static boolean isNumeric(String cadena){
+		try {
+			Integer.parseInt(cadena);
+			return true;
+		} catch (NumberFormatException nfe){
+			return false;
+		}
+	}
 
 
 }
