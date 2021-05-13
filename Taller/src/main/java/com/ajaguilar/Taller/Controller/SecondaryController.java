@@ -48,8 +48,6 @@ public class SecondaryController {
 	@FXML
 	private TableView<Reparacion> tablaReparaciones;
 	@FXML
-	private TableColumn<Reparacion, Integer> idColumna;
-	@FXML
 	private TableColumn<Reparacion,Double> precioColumna;
 	@FXML
 	private TableColumn<Reparacion,String> matriculaColumna;
@@ -57,8 +55,7 @@ public class SecondaryController {
 	private TableColumn<Reparacion,String> descripcionColumna;
 	@FXML
 	private TableColumn<Reparacion,String> fechaColumna;
-	@FXML
-	private TableColumn<Reparacion,Integer> pagadoColumna;
+
 	
 	@FXML
 	private Button deleteReparacion;
