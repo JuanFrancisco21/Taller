@@ -202,21 +202,20 @@ public class PrimaryController {
 	@FXML
 	private void search() {
 		String pattern=DniCliente.getText();
-        pattern=pattern.trim();
-        clientes.clear();
-        
-        
-        Client newC=new Client();
-        if(!pattern.equals("")){
-        	newC=ClientDAO.buscaPorDni(pattern);
-            List<Reparacion> lc=ReparacionDAO.getReparacionByClient( pattern);
-            Reparaciones.clear();
-            Reparaciones.addAll(lc);
-        }else {
-        	
-        }
-        clientes.addAll(newC);
-        
+		if (pattern!=null &&pattern!="") {
+	        pattern=pattern.trim();
+	        clientes.clear();
+	        
+	     
+	        Client newC=new Client();
+	        if(!pattern.equals("")){
+	        	newC=ClientDAO.buscaPorDni(pattern);
+	            
+	        }
+	        clientes.addAll(newC);
+		}else {
+			clientes.clear();
+		}
 
 	}
 	
@@ -263,7 +262,15 @@ public class PrimaryController {
 	
 	            	Client selected = (Client) t.getTableView().getItems().get(
 	                        t.getTablePosition().getRow());
-	                selected.setNombre(t.getNewValue());
+	                
+	            	if (t.getNewValue()!=null &&t.getNewValue()!="") {
+	            		selected.setNombre(t.getNewValue());
+	            	} else {
+						Dialog.showWarning("Nombre", "Nombre no valido", "Formato= Debe estar completo el campo.");
+						configuraTablas();
+					}
+	            	
+	                
 	                ClientDAO cc = new ClientDAO(selected);
 	                cc.guardar();
 	            }
@@ -280,7 +287,14 @@ public class PrimaryController {
 
 	            	Client selected = (Client) t.getTableView().getItems().get(
 	                        t.getTablePosition().getRow());
+	            	
+	            	if (GUI.validaAddress(t.getNewValue())==true) {
 		                selected.setDireccion(t.getNewValue());
+
+	            	} else {
+						Dialog.showWarning("Dirección", "Dirección no valido", "Formato= (C/.....).");
+						configuraTablas();
+					}
 	                ClientDAO cc = new ClientDAO(selected);
 	                cc.guardar();
 	            }

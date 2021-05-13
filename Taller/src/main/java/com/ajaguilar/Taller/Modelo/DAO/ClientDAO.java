@@ -200,12 +200,11 @@ public class ClientDAO extends Client implements DAO{
 	}
 	
 	/**
-	 * Metodo para buscar personas por su dni.
+	 * Metodo para buscar persona por su dni.
 	 * @param dni por el cual se busca al cliente.
 	 * @return devuelve una lista de personas.
 	 */
 	public static Client buscaPorDni(String dni) {
-		List<Client> result=new ArrayList<Client>();
 		Client a=new Client();
 
 		Connection con = Conexion.getConexion();
@@ -219,7 +218,6 @@ public class ClientDAO extends Client implements DAO{
 					a.setDni(rs.getString("dni"));
 					a.setNombre(rs.getString("nombre"));
 					a.setDireccion(rs.getString("direccion"));
-					result.add(a);
 				}
 			} catch (SQLException e) {
 				System.out.println("Error en clienteDAO al buscar nombre");
@@ -229,6 +227,7 @@ public class ClientDAO extends Client implements DAO{
 		
 		return a;
 	}
+
 	
 	public static List<Reparacion> buscaReparacionDni(String dni){
 		List<Reparacion> result=new ArrayList<Reparacion>();

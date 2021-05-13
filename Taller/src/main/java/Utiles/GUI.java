@@ -1,23 +1,32 @@
 package Utiles;
 
-import java.util.Scanner;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class GUI {
 	
-	public static Boolean getDate(String fecha) {
-		 boolean result = false;
-	        Pattern patron = Pattern.compile("[0-9]{4}[-][0-1][0-9][-][0-3][0-9]");
-	        Matcher mat = patron.matcher(fecha);
-	       
-				if(!mat.matches()){
-			           mat = patron.matcher(fecha);
-			           result=true;
-			     }
-			
-	        
-	        return result;
+	/**
+	 * Método para validar fecha.
+	 * @return devualve un booleano.
+	 */
+	public static boolean validarFecha(String fecha) {
+	    boolean correcto = false;
+
+	    try {
+	        //Formato de fecha (día/mes/año)
+	        SimpleDateFormat formatoFecha = new SimpleDateFormat("yyyy-MM-dd");
+	        formatoFecha.setLenient(false);
+	        //Comprobación de la fecha
+	        formatoFecha.parse(fecha);
+	        correcto = true;
+	    } catch (ParseException e) {
+	        //Si la fecha no es correcta, pasará por aquí
+	        correcto = false;
+	    }
+
+	    return correcto;
 	}
 	/**
 	 * Validacion de direccion
@@ -27,13 +36,18 @@ public class GUI {
 	public static boolean validaAddress(String address) {
 		boolean result=false;
 		if(address!=null) {
-			char l1='C';
-			char l2='/';
-			char letra=address.charAt(0);
-			char letra2=address.charAt(1);
-			if(letra==l1||letra2==l2) {
-				result=true;
+			try {
+				char l1='C';
+				char l2='/';
+				char letra=address.charAt(0);
+				char letra2=address.charAt(1);
+				if(letra==l1&&letra2==l2) {
+					result=true;
+				}
+			} catch (Exception e) {
+				System.out.println("Error al validar direccion");
 			}
+			
 		}
 		return result;
 	}

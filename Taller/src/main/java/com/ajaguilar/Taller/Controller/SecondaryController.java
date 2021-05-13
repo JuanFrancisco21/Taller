@@ -93,22 +93,26 @@ public class SecondaryController {
     private void addRepa() {
     
     	try {
+    		LocalDate h=fecha.getValue();
+    		double p=Double.parseDouble(textPrecio.getText());
+    		String m=textMatricula.getText();
+    		String d=textDescripcion.getText();
+    		String f =h.getYear()+"-"+h.getMonthValue()+"-"+h.getDayOfMonth();
+    		Client c=cliente;
+    		
     		if (GUI.validaMatricula(textMatricula.getText()) && GUI.isDecimal(textPrecio.getText())) {
-    			LocalDate h=fecha.getValue();
-        		double p=Double.parseDouble(textPrecio.getText());
-        		String m=textMatricula.getText();
-        		String d=textDescripcion.getText();
-        		String f =h.getYear()+"-"+h.getMonthValue()+"-"+h.getDayOfMonth();
-        		Client c=cliente;
+    			
     			Reparacion x =new Reparacion(2,p,m,d,f,c);
         		ReparacionDAO a=new ReparacionDAO(x);
             	
             	a.guardar();
             	Reparaciones.add(a);
-			}else if (GUI.validaMatricula(textMatricula.getText())) {
-				Dialog.showWarning("Matricula", "Matricula no válida", "Formato= (1234 YYY)/(1234-YYY)/(1234 YY)");
-			}else if (GUI.isDecimal(textPrecio.getText())) {
+			}else if (!GUI.isDecimal(textPrecio.getText())) {
 				Dialog.showWarning("Precio", "Precio no válido", "Debe ser un numero (con decimales)");
+			}else if (!GUI.validaMatricula(textMatricula.getText())) {
+				Dialog.showWarning("Matricula", "Matricula no válida", "Formato= (1234 YYY)/(1234-YYY)/(1234 YY)");
+			}else if (!GUI.validarFecha(f)) {
+				Dialog.showWarning("Fecha", "Fecha no válida", "Formato= (YYYY-MM-DD)");
 			}
     		
 

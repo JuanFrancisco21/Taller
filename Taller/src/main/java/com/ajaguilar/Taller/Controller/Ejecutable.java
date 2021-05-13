@@ -17,8 +17,8 @@ public class Ejecutable {
 
 	@SuppressWarnings("deprecation")
 	public static void main(String[] args) {
-		
-		System.out.println(GUI.isDecimal("5.546"));
+
+	
 	}
 
 }
