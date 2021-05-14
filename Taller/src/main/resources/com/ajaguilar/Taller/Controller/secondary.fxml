@@ -45,7 +45,7 @@
                            </GridPane.margin>
                         </TextField>
                         <Label text="Fecha" GridPane.rowIndex="3" />
-                        <DatePicker fx:id="fecha" prefHeight="23.0" prefWidth="136.0" stylesheets="@Darktheme.css" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <DatePicker fx:id="fecha" prefHeight="23.0" prefWidth="136.0" promptText="YYYY/MM/DD" stylesheets="@Darktheme.css" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                      </children>
                      <padding>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
